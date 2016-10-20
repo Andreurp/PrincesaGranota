@@ -1,44 +1,34 @@
 package net.andreu.PrincesaGranota;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
-import acm.graphics.GImage;
-import acm.graphics.GRectangle;
+public class Bassa {
 
-public abstract class Bassa {
+	private static final int AMPLADA_PANTALLA = 1024;
+	private static final int ALTURA_PANTALLA = 768;
+	private static final int N_Granotes = 5;
 
-	protected boolean horizontal;
-	protected GImage imatge;
-	protected int posicioX;
-	protected int posicioY;
-	protected int midaFinestraX;
-	protected int midaFinestraY;
-	protected int velocitat;
-
-	protected Random rand = new Random();
-
-	public Bassa(int midaFinestraX, int midaFinestraY) {
-		this.midaFinestraX = midaFinestraX;
-		this.midaFinestraY = midaFinestraY;
-		horizontal = rand.nextBoolean();
-		posicioX = rand.nextInt(midaFinestraX - 100);
-		posicioY = rand.nextInt(midaFinestraY - 100);
-		velocitat = rand.nextInt(11) + 5;
-	}
-
-	protected abstract void generaImatge();
-
-	// Mou peix
-	public abstract void mou();
-
-	public GImage getImatge() {
-		return imatge;
-	}
-
-	public GRectangle getPosicio() {
-		return imatge.getBounds();
-	}
+	List<Personatge> personatges = new ArrayList<Personatge>();
 	
-	public abstract int xoca(Bassa p);
+	public Bassa() {
+		creaPersonatge();
+	}
 
+	private void creaPersonatge() {
+		Personatge p = new Princep(AMPLADA_PANTALLA, ALTURA_PANTALLA);
+		personatges.add(p);
+		
+		Granota gp = new Granota(AMPLADA_PANTALLA, ALTURA_PANTALLA, true);
+		personatges.add(gp);
+		
+		for(int i=0; i<N_Granotes; i++){
+			Granota g = new Granota(AMPLADA_PANTALLA, ALTURA_PANTALLA, false);
+			personatges.add(g);
+		}
+	}
+
+	public List<Personatge> getPersonatges() {
+		return personatges;
+	}
 }

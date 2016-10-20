@@ -1,6 +1,8 @@
 package net.andreu.PrincesaGranota;
 
-public class Princep extends Bassa{
+import acm.graphics.GImage;
+
+public class Princep extends Personatge{
 
 	public Princep(int midaFinestraX, int midaFinestraY) {
 		super(midaFinestraX, midaFinestraY);
@@ -9,7 +11,8 @@ public class Princep extends Bassa{
 
 	@Override
 	protected void generaImatge() {
-		// TODO Auto-generated method stub
+		
+		imatge = new GImage("cavaller.png");
 		
 	}
 
@@ -19,8 +22,7 @@ public class Princep extends Bassa{
 		
 	}
 
-	@Override
-	public int xoca(Bassa p) {
+	public int xoca(Personatge p) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

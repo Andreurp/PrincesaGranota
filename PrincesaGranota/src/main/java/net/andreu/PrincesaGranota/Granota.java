@@ -1,16 +1,28 @@
 package net.andreu.PrincesaGranota;
 
-public class Granota extends Bassa {
+import acm.graphics.GImage;
 
-	public Granota(int midaFinestraX, int midaFinestraY) {
+public class Granota extends Personatge{
+	
+	private boolean esPrincesa;
+
+	public Granota(int midaFinestraX, int midaFinestraY, boolean esPrincesa) {
 		super(midaFinestraX, midaFinestraY);
-		// TODO Auto-generated constructor stub
+		
+		this.esPrincesa = esPrincesa;
+		
 	}
 
 	@Override
 	protected void generaImatge() {
-		// TODO Auto-generated method stub
+		String img = "";
 		
+		if(esPrincesa){
+			img = "princesa.png";
+		}else{
+			img = "granota.png";
+		}
+		imatge = new GImage(img, posicioX, posicioY);
 	}
 
 	@Override
@@ -18,11 +30,4 @@ public class Granota extends Bassa {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public int xoca(Bassa p) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }
