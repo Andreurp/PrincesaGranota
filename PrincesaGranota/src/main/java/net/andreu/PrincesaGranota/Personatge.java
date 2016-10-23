@@ -22,6 +22,8 @@ public abstract class Personatge {
 		posicioX = rand.nextInt(midaFinestraX - 100);
 		posicioY = rand.nextInt(midaFinestraY - 100);
 		velocitat = rand.nextInt(11) + 5;
+		
+		generaImatge();
 	}
 
 	protected abstract void generaImatge();
