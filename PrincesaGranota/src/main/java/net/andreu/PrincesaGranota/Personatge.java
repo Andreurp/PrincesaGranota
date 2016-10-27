@@ -12,6 +12,8 @@ public abstract class Personatge {
 	protected int posicioY;
 	protected int midaFinestraX;
 	protected int midaFinestraY;
+	protected boolean horizontal;
+	protected int direccio;
 	protected int velocitat;
 
 	protected Random rand = new Random();
@@ -21,14 +23,20 @@ public abstract class Personatge {
 		this.midaFinestraY = midaFinestraY;
 		posicioX = rand.nextInt(midaFinestraX - 100);
 		posicioY = rand.nextInt(midaFinestraY - 100);
+		horizontal=rand.nextBoolean();
 		velocitat = rand.nextInt(11) + 5;
-		
+
+		if (rand.nextBoolean() == true) {
+			direccio = 1;
+		} else {
+			direccio = -1;
+		}
 		generaImatge();
 	}
 
 	protected abstract void generaImatge();
 
-	public abstract void mou();
+	public abstract void mou(int codi);
 
 	public GImage getImatge() {
 		return imatge;
