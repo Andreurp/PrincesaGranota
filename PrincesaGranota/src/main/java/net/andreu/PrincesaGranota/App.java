@@ -22,10 +22,12 @@ public class App extends GraphicsProgram implements KeyListener {
 
 	public void init() {
 		baseta = new Bassa(AMPLADA_PANTALLA, ALTURA_PANTALLA);
+		
 		setSize(AMPLADA_PANTALLA, ALTURA_PANTALLA);
 		GImage fons = new GImage("fons.jpg");
 		fons.setSize(AMPLADA_PANTALLA, ALTURA_PANTALLA);
 		add(fons);
+		
 	    addKeyListeners();
 	}
 	/**
@@ -40,11 +42,14 @@ public class App extends GraphicsProgram implements KeyListener {
 		for(Personatge p: personatges){
 			add(p.getImatge());
 		}
-		
-		while(true){
+
+		while (!baseta.gameOver()) {
 			baseta.mou();
-			
+			for (Personatge p : baseta.getBebes()) {
+				add(p.getImatge());
+			}
 			pause(100);
+			System.out.println(personatges.size());
 		}
 	}
 

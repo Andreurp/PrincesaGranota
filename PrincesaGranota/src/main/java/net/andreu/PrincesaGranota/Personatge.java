@@ -15,6 +15,8 @@ public abstract class Personatge {
 	protected boolean horizontal;
 	protected int direccio;
 	protected int velocitat;
+	protected boolean esteril;
+	protected int contedorEsteril;
 
 	protected Random rand = new Random();
 
@@ -25,7 +27,9 @@ public abstract class Personatge {
 		posicioY = rand.nextInt(midaFinestraY - 100);
 		horizontal=rand.nextBoolean();
 		velocitat = rand.nextInt(11) + 5;
-
+		esteril=false;
+		contedorEsteril=0;
+		
 		if (rand.nextBoolean() == true) {
 			direccio = 1;
 		} else {
@@ -44,5 +48,18 @@ public abstract class Personatge {
 
 	public GRectangle getPosicio() {
 		return imatge.getBounds();
+	}
+	
+	public abstract int xoca(Personatge p);
+
+	public void setEsteril(boolean esteril) {
+		this.esteril = esteril;
+		if (esteril == true) {
+			contedorEsteril = (int) imatge.getBounds().getWidth();
+		}
+	}
+
+	public boolean getEsteril() {
+		return esteril;
 	}
 }

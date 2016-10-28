@@ -29,7 +29,8 @@ public class Princep extends Personatge{
 			break;
 		//Dreta
 		case 39:
-			imatge.move(velocitat, 0);
+			//imatge.move(velocitat, 0);
+			imatge.move(velocitat, -velocitat);
 		//Baix
 		case 40:
 			imatge.move(0, velocitat);
@@ -44,10 +45,19 @@ public class Princep extends Personatge{
 		} else if (imatge.getLocation().getY()+imatge.getHeight() > midaFinestraY) {
 			imatge.setLocation(imatge.getLocation().getX(),midaFinestraY-imatge.getHeight() );
 		}
+		
+		contedorEsteril = contedorEsteril - velocitat;
+		if (contedorEsteril <= 0) {
+			esteril = false;
+		}
 	}
 	
 	public int xoca(Personatge p) {
-		// TODO Auto-generated method stub
+		if (this.getPosicio().intersects(p.getPosicio())) {
+			if (this.getEsteril() == false && p.getEsteril() == false) {
+				return 2;
+			}
+		}
 		return 0;
 	}
 }

@@ -55,4 +55,10 @@ public class Granota extends Personatge {
 			}
 		}
 	}
+
+	@Override
+	public int xoca(Personatge p) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
