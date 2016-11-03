@@ -16,6 +16,10 @@ public class Granota extends Personatge {
 		this.esPrincesa = esPrincesa;
 		generaImatge();
 	}
+	
+	public boolean getPrincesa(){
+		return esPrincesa;
+	}
 
 	@Override
 	protected void generaImatge() {
@@ -56,6 +60,11 @@ public class Granota extends Personatge {
 		}
 	}
 
+	/**
+	 * Retorna
+	 * 0 - No hi ha xoc
+	 */
+	
 	@Override
 	public int xoca(Personatge p) {
 		// TODO Auto-generated method stub

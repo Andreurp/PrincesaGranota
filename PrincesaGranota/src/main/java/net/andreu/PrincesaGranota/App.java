@@ -2,7 +2,6 @@ package net.andreu.PrincesaGranota;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.List;
 
 import acm.graphics.GImage;
 import acm.graphics.GLabel;
@@ -38,19 +37,26 @@ public class App extends GraphicsProgram implements KeyListener {
 		
 		clicaPerComencar();
 		
-		List<Personatge> personatges = baseta.getPersonatges();
-		for(Personatge p: personatges){
-			add(p.getImatge());
-		}
-
 		while (!baseta.gameOver()) {
 			baseta.mou();
-			for (Personatge p : baseta.getBebes()) {
+			if(baseta.calEsborrar()){
+				for (Personatge p : baseta.getPersonatges()) {
+					remove(p.getImatge());
+				}
+				baseta.creaPersonatges();
+			}
+
+			for (Personatge p : baseta.getPersonatges()) {
 				add(p.getImatge());
 			}
 			pause(100);
-			System.out.println(personatges.size());
 		}
+		for (Personatge p : baseta.getPersonatges()) {
+			remove(p.getImatge());
+		}
+		GImage fonsFinal = new GImage("rei.png");
+		fonsFinal.setSize(AMPLADA_PANTALLA, ALTURA_PANTALLA);
+		add(fonsFinal);
 	}
 
 	/**

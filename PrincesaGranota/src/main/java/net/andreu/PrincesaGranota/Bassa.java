@@ -5,13 +5,12 @@ import java.util.List;
 
 public class Bassa {
 
-	private static final int N_Granotes = 1;
-
+	private int n_granotes = 1;
+	private boolean calEsborrar = false;
 	private int AMPLADA_PANTALLA;
 	private int ALTURA_PANTALLA;
 	
 	List<Personatge> personatges = new ArrayList<Personatge>();
-	List<Personatge> granotesNoves = new ArrayList<Personatge>();
 	
 	private int codiMoviment = -1;
 	private boolean pincesaTrobada = false;
@@ -20,23 +19,29 @@ public class Bassa {
 		this.AMPLADA_PANTALLA = AMPLADA_PANTALLA;
 		this.ALTURA_PANTALLA = ALTURA_PANTALLA;
 
-		creaPersonatge();
+		creaPersonatges();
 	}
 
-	private void creaPersonatge() {
+	public void creaPersonatges() {
+		calEsborrar=false;
+		personatges.clear(); 
+		
 		Personatge p = new Princep(AMPLADA_PANTALLA, ALTURA_PANTALLA);
 		personatges.add(p);
 
-		/*Granota gp = new Granota(AMPLADA_PANTALLA, ALTURA_PANTALLA);
+		Granota gp = new Granota(AMPLADA_PANTALLA, ALTURA_PANTALLA);
 		gp.setPrincesa(true);
-		personatges.add(gp);*/
+		personatges.add(gp);
 
-		for (int i = 0; i < N_Granotes; i++) {
+		for (int i = 0; i < n_granotes; i++) {
 			Granota g = new Granota(AMPLADA_PANTALLA, ALTURA_PANTALLA);
 			personatges.add(g);
 		}
 	}
 
+	public boolean calEsborrar(){
+		return calEsborrar;
+	}
 	public List<Personatge> getPersonatges() {
 		return personatges;
 	}
@@ -55,29 +60,19 @@ public class Bassa {
 						break;
 					case 1:
 						pincesaTrobada = true;
-						gameOver();
 						break;
 					case 2:
-						Granota g = new Granota(AMPLADA_PANTALLA, ALTURA_PANTALLA);
-						granotesNoves.add(g);
-						p.setEsteril(true);
-						q.setEsteril(true);
+						n_granotes++;
+						calEsborrar=true;
 						break;
 					}
 				}
 			}
 		}
-		for (Personatge gn : granotesNoves) {
-			personatges.add(gn);
-		}
 	}
 
 	public void setMouPrince(int codi) {
 		codiMoviment = codi;
-	}
-	
-	public List<Personatge> getBebes() {
-		return granotesNoves;
 	}
 
 	// para el joc

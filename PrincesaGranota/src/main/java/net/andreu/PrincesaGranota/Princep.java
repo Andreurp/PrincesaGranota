@@ -29,8 +29,8 @@ public class Princep extends Personatge{
 			break;
 		//Dreta
 		case 39:
-			//imatge.move(velocitat, 0);
-			imatge.move(velocitat, -velocitat);
+			imatge.move(velocitat, 0);
+			break;
 		//Baix
 		case 40:
 			imatge.move(0, velocitat);
@@ -45,16 +45,19 @@ public class Princep extends Personatge{
 		} else if (imatge.getLocation().getY()+imatge.getHeight() > midaFinestraY) {
 			imatge.setLocation(imatge.getLocation().getX(),midaFinestraY-imatge.getHeight() );
 		}
-		
-		contedorEsteril = contedorEsteril - velocitat;
-		if (contedorEsteril <= 0) {
-			esteril = false;
-		}
 	}
-	
+	/**
+	 * Retorna
+	 * 0 - No hi ha xoc
+	 * 1- Xoca amb la princesa
+	 * 2- Xoca amb una granota
+	 */
 	public int xoca(Personatge p) {
-		if (this.getPosicio().intersects(p.getPosicio())) {
-			if (this.getEsteril() == false && p.getEsteril() == false) {
+		if(p.getClass().equals(Granota.class)){
+			if (this.getPosicio().intersects(p.getPosicio())) {
+				if(((Granota)p).getPrincesa()==true){
+					return 1;
+				}
 				return 2;
 			}
 		}
